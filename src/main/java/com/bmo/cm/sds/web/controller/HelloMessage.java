@@ -2,9 +2,9 @@ package com.bmo.cm.sds.web.controller;
 
 public class HelloMessage {
 
-    private String name;
+    private Long name;
     
-    public String getName() {
+    public Long getName() {
         return name;
     }
 

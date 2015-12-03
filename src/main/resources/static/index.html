@@ -20,8 +20,9 @@
             stompClient.connect({}, function(frame) {
                 setConnected(true);
                 console.log('Connected: ' + frame);
-                stompClient.subscribe('/topic/greetings', function(greeting){
-                    showGreeting(JSON.parse(greeting.body).content);
+                stompClient.subscribe('/topic/greetings', function(message){
+                    //showGreeting(JSON.parse(message.body).jobInstanceId);
+                    showGreeting(message);
                 });
             });
         }
@@ -39,11 +40,11 @@
             stompClient.send("/app/hello", {}, JSON.stringify({ 'name': name }));
         }
 
-        function showGreeting(message) {
+        function showGreeting(batchJob) {
             var response = document.getElementById('response');
             var p = document.createElement('p');
             p.style.wordWrap = 'break-word';
-            p.appendChild(document.createTextNode(message));
+            p.appendChild(document.createTextNode(batchJob));
             response.appendChild(p);
         }
     </script>
@@ -57,7 +58,7 @@
         <button id="disconnect" disabled="disabled" onclick="disconnect();">Disconnect</button>
     </div>
     <div id="conversationDiv">
-        <label>What is your name?</label><input type="text" id="name" />
+        <label>What is the instance id?</label><input type="text" id="name" />
         <button id="sendName" onclick="sendName();">Send</button>
         <p id="response"></p>
     </div>
