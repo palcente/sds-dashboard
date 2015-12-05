@@ -1,11 +1,12 @@
 package com.bmo.cm.sds.web.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Created by matt on 02/12/2015.
  */
-public class BatchStepExecution {
+public class BatchStepExecution implements Serializable {
 
     private long stepExecutionId;
     private String version;

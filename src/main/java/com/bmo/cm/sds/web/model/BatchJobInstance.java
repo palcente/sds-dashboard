@@ -5,24 +5,22 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 
 /**
  * Created by matt on 02/12/2015.
  */
 @Entity
 @Table(name="BATCH_JOB_INSTANCE")
-public class BatchJobInstance {
+public class BatchJobInstance implements Serializable {
 
     @Id
     private long jobInstanceId;
     @NotNull
-    @Column(name="VERSION")
     private long version;
     @NotNull
-    @Column(name="JOB_NAME")
     private String jobName;
     @NotNull
-    @Column(name="JOB_KEY")
     private String jobKey;
 
     public BatchJobInstance() {

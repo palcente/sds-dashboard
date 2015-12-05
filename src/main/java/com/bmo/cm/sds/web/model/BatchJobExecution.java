@@ -1,6 +1,7 @@
 package com.bmo.cm.sds.web.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -10,7 +11,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "BATCH_JOB_EXECUTION")
-public class BatchJobExecution {
+public class BatchJobExecution implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
