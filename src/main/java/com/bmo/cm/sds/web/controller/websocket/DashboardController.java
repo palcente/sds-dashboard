@@ -1,4 +1,4 @@
-package com.bmo.cm.sds.web.controller;
+package com.bmo.cm.sds.web.controller.websocket;
 
 import com.bmo.cm.sds.web.dao.DashboardDao;
 import com.bmo.cm.sds.web.model.DashboardEntry;
@@ -14,6 +14,7 @@ import java.util.List;
 
 /**
  * Created by matt on 29/11/2015.
+ * TODO:Refine query returning dashboard entries, perhaps we could fetch entries 12/24/36/48 hours back.
  */
 @Controller
 public class DashboardController {
