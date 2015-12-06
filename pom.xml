@@ -3,13 +3,13 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.bmo.cm.sds.web</groupId>
-	<artifactId>sds-dashboard</artifactId>
+	<groupId>com.labuda.matt.web</groupId>
+	<artifactId>spring-batch-dashboard</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>sds-dashboard</name>
-	<description>Dashboard</description>
+	<name>spring-batch-dashboard</name>
+	<description>Spring Batch Dashboard</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>

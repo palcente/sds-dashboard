@@ -23,10 +23,12 @@
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
         <module name="sds-dashboard" />
+        <module name="spring-batch-dashboard" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="sds-dashboard" target="1.8" />
+      <module name="spring-batch-dashboard" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

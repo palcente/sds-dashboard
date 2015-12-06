@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/sds-dashboard.iml" filepath="$PROJECT_DIR$/sds-dashboard.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-batch-dashboard.iml" filepath="$PROJECT_DIR$/spring-batch-dashboard.iml" />
     </modules>
   </component>
 </project>
