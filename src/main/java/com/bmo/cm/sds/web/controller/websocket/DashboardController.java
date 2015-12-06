@@ -28,7 +28,6 @@ public class DashboardController {
     @MessageMapping("/dashboard")
     @SendTo("/topic/dashboardEntries")
     public List<DashboardEntry> pushEntries(WebsocketMessage m) throws Exception {
-        System.out.println(m.getDate());
         return dao.findByFromDateBetween(LocalDate.parse(m.getDate(),dTF).atStartOfDay(), LocalDate.parse(m.getDate(),dTF).plusDays(1).atStartOfDay());
     }
 }

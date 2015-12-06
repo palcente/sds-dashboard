@@ -15,13 +15,7 @@ import java.util.Date;
 public class BatchJobExecution implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private long jobExecutionId;
-
-/*    =========================
-    IN PROGRESS MARKED FOR FUTURE USE
-        =========================       */
-
     private long version;
     private long jobInstanceId;
     private LocalDateTime createTime;
