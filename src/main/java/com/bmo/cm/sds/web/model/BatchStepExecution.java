@@ -1,19 +1,25 @@
 package com.bmo.cm.sds.web.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 /**
  * Created by matt on 02/12/2015.
  */
+@Entity
+@Table(name = "BATCH_STEP_EXECUTION")
 public class BatchStepExecution implements Serializable {
 
+    @Id
     private long stepExecutionId;
     private String version;
     private String stepName;
     private long jobExecutionId;
-    private Date startTime;
-    private Date endTime;
+    private LocalDateTime startTime;
+    private LocalDateTime endTime;
     private String status;
     private long commitCount;
     private long readCount;
@@ -22,10 +28,10 @@ public class BatchStepExecution implements Serializable {
     private long readSkipCount;
     private long writeSkipCount;
     private long processSkipCount;
-    private long rollbackSkipCount;
+    private long rollbackCount;
     private String exitCode;
     private String exitMessage;
-    private Date lastUpdated;
+    private LocalDateTime lastUpdated;
 
     public BatchStepExecution() {
     }
@@ -47,7 +53,7 @@ public class BatchStepExecution implements Serializable {
                 ", readSkipCount=" + readSkipCount +
                 ", writeSkipCount=" + writeSkipCount +
                 ", processSkipCount=" + processSkipCount +
-                ", rollbackSkipCount=" + rollbackSkipCount +
+                ", rollbackCount=" + rollbackCount +
                 ", exitCode='" + exitCode + '\'' +
                 ", exitMessage='" + exitMessage + '\'' +
                 ", lastUpdated=" + lastUpdated +
@@ -70,7 +76,7 @@ public class BatchStepExecution implements Serializable {
         if (readSkipCount != that.readSkipCount) return false;
         if (writeSkipCount != that.writeSkipCount) return false;
         if (processSkipCount != that.processSkipCount) return false;
-        if (rollbackSkipCount != that.rollbackSkipCount) return false;
+        if (rollbackCount != that.rollbackCount) return false;
         if (version != null ? !version.equals(that.version) : that.version != null) return false;
         if (stepName != null ? !stepName.equals(that.stepName) : that.stepName != null) return false;
         if (startTime != null ? !startTime.equals(that.startTime) : that.startTime != null) return false;
@@ -98,7 +104,7 @@ public class BatchStepExecution implements Serializable {
         result = 31 * result + (int) (readSkipCount ^ (readSkipCount >>> 32));
         result = 31 * result + (int) (writeSkipCount ^ (writeSkipCount >>> 32));
         result = 31 * result + (int) (processSkipCount ^ (processSkipCount >>> 32));
-        result = 31 * result + (int) (rollbackSkipCount ^ (rollbackSkipCount >>> 32));
+        result = 31 * result + (int) (rollbackCount ^ (rollbackCount >>> 32));
         result = 31 * result + (exitCode != null ? exitCode.hashCode() : 0);
         result = 31 * result + (exitMessage != null ? exitMessage.hashCode() : 0);
         result = 31 * result + (lastUpdated != null ? lastUpdated.hashCode() : 0);
@@ -135,22 +141,6 @@ public class BatchStepExecution implements Serializable {
 
     public void setJobExecutionId(long jobExecutionId) {
         this.jobExecutionId = jobExecutionId;
-    }
-
-    public Date getStartTime() {
-        return startTime;
-    }
-
-    public void setStartTime(Date startTime) {
-        this.startTime = startTime;
-    }
-
-    public Date getEndTime() {
-        return endTime;
-    }
-
-    public void setEndTime(Date endTime) {
-        this.endTime = endTime;
     }
 
     public String getStatus() {
@@ -217,12 +207,12 @@ public class BatchStepExecution implements Serializable {
         this.processSkipCount = processSkipCount;
     }
 
-    public long getRollbackSkipCount() {
-        return rollbackSkipCount;
+    public long getRollbackCount() {
+        return rollbackCount;
     }
 
-    public void setRollbackSkipCount(long rollbackSkipCount) {
-        this.rollbackSkipCount = rollbackSkipCount;
+    public void setRollbackCount(long rollbackCount) {
+        this.rollbackCount = rollbackCount;
     }
 
     public String getExitCode() {
@@ -241,11 +231,27 @@ public class BatchStepExecution implements Serializable {
         this.exitMessage = exitMessage;
     }
 
-    public Date getLastUpdated() {
+    public LocalDateTime getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(LocalDateTime startTime) {
+        this.startTime = startTime;
+    }
+
+    public LocalDateTime getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(LocalDateTime endTime) {
+        this.endTime = endTime;
+    }
+
+    public LocalDateTime getLastUpdated() {
         return lastUpdated;
     }
 
-    public void setLastUpdated(Date lastUpdated) {
+    public void setLastUpdated(LocalDateTime lastUpdated) {
         this.lastUpdated = lastUpdated;
     }
 }

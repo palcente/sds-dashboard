@@ -2,6 +2,7 @@ package com.bmo.cm.sds.web.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
@@ -23,13 +24,13 @@ public class BatchJobExecution implements Serializable {
 
     private long version;
     private long jobInstanceId;
-    private Date createTime;
-    private Date startTime;
-    private Date endTime;
+    private LocalDateTime createTime;
+    private LocalDateTime startTime;
+    private LocalDateTime endTime;
     private String status;
     private String exitCode;
     private String exitMessage;
-    private Date lastUpdated;
+    private LocalDateTime lastUpdated;
 
     public BatchJobExecution() {
     }
@@ -109,28 +110,32 @@ public class BatchJobExecution implements Serializable {
         this.jobInstanceId = jobInstanceId;
     }
 
-    public Date getCreateTime() {
+    public LocalDateTime getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(LocalDateTime createTime) {
         this.createTime = createTime;
     }
 
-    public Date getStartTime() {
+    public LocalDateTime getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(Date startTime) {
+    public void setStartTime(LocalDateTime startTime) {
         this.startTime = startTime;
     }
 
-    public Date getEndTime() {
+    public LocalDateTime getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(Date endTime) {
+    public void setEndTime(LocalDateTime endTime) {
         this.endTime = endTime;
+    }
+
+    public void setLastUpdated(LocalDateTime lastUpdated) {
+        this.lastUpdated = lastUpdated;
     }
 
     public String getStatus() {
@@ -157,11 +162,7 @@ public class BatchJobExecution implements Serializable {
         this.exitMessage = exitMessage;
     }
 
-    public Date getLastUpdated() {
+    public LocalDateTime getLastUpdated() {
         return lastUpdated;
-    }
-
-    public void setLastUpdated(Date lastUpdated) {
-        this.lastUpdated = lastUpdated;
     }
 }

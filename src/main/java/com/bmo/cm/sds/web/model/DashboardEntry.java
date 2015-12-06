@@ -2,6 +2,8 @@ package com.bmo.cm.sds.web.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
@@ -10,17 +12,18 @@ import java.util.Date;
 
 @Entity
 @Table(name="BATCH_JOB_EXECUTION")
-@SecondaryTable(name="BATCH_JOB_INSTANCE",pkJoinColumns = @PrimaryKeyJoinColumn(name="jobInstanceId", referencedColumnName="jobExecutionId"))
+@SecondaryTable(name="BATCH_JOB_INSTANCE",pkJoinColumns = @PrimaryKeyJoinColumn(name="jobInstanceId", referencedColumnName="jobInstanceId"))
 public class DashboardEntry implements Serializable {
 
-    @Id
+
     private long jobExecutionId;
     @Column(table="BATCH_JOB_INSTANCE")
     private String jobName;
+    @Id
     private long jobInstanceId;
-    private Date createTime;
-    private Date startTime;
-    private Date endTime;
+    private LocalDateTime createTime;
+    private LocalDateTime startTime;
+    private LocalDateTime endTime;
     private String status;
     private String exitCode;
 
@@ -53,27 +56,27 @@ public class DashboardEntry implements Serializable {
         this.jobName = jobName;
     }
 
-    public Date getCreateTime() {
+    public LocalDateTime getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(LocalDateTime createTime) {
         this.createTime = createTime;
     }
 
-    public Date getStartTime() {
+    public LocalDateTime getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(Date startTime) {
+    public void setStartTime(LocalDateTime startTime) {
         this.startTime = startTime;
     }
 
-    public Date getEndTime() {
+    public LocalDateTime getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(Date endTime) {
+    public void setEndTime(LocalDateTime endTime) {
         this.endTime = endTime;
     }
 

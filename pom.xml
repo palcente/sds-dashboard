@@ -42,7 +42,15 @@
 			<artifactId>spring-messaging</artifactId>
 		</dependency>
 
-        <dependency>
+		<!--This adds se/deserialization support for java 8 datetime classes-->
+		<dependency>
+			<groupId>com.fasterxml.jackson.datatype</groupId>
+			<artifactId>jackson-datatype-jsr310</artifactId>
+			<version>2.6.3</version>
+		</dependency>
+
+
+		<dependency>
             <groupId>com.oracle</groupId>
             <artifactId>ojdbc6</artifactId>
             <version>11.2.0.3</version>
