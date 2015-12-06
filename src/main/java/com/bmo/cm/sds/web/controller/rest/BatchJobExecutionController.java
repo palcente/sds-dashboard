@@ -17,8 +17,8 @@ public class BatchJobExecutionController {
 @Autowired
 private BatchJobExecutionDao dao;
 
-    @RequestMapping(value = "/batchJobExecution", method = RequestMethod.GET)
-    public BatchJobExecution getJobExecution(@RequestParam(name="id") long id) {
-        return dao.findOne(id);
+    @RequestMapping(path = "/batchJobExecution/{jobExecutionId}", method = RequestMethod.GET)
+    public BatchJobExecution getJobExecution(@PathVariable long jobExecutionId) {
+        return dao.findOne(jobExecutionId);
     }
 }

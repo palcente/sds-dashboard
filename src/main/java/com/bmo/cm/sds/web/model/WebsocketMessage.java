@@ -2,9 +2,9 @@ package com.bmo.cm.sds.web.model;
 
 public class WebsocketMessage {
 
-    private String content;
+    private String date;
 
-    public String getContent() {
-        return content;
+    public String getDate() {
+        return date;
     }
 }
