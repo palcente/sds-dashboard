@@ -21,7 +21,7 @@ public class WebsocketDisconnectEventListener implements ApplicationListener<Ses
 
 
     @Autowired
-private WebsocketSessionContext websocketSessionContext;
+    private WebsocketSessionContext websocketSessionContext;
 
     @Override
     public void onApplicationEvent(SessionDisconnectEvent sessionDisconnectEvent) {

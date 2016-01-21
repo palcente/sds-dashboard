@@ -1,7 +1,6 @@
 package com.labuda.matt.web.util.websocket;
 
 import com.labuda.matt.web.controller.websocket.DashboardController;
-import com.labuda.matt.web.model.WebsocketMessage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,13 +40,15 @@ public class DashboardEntryPoller {
         if(websocketSessionContext.hasActiveSessions()) {
 
             LocalDateTime lastUpdated = template.queryForObject(SQL, Timestamp.class).toLocalDateTime();
-            WebsocketMessage lastMessage = dashboardController.getLastMessage();
 
             if (LAST_UPDATE_DATETIME == null)
                 LAST_UPDATE_DATETIME = lastUpdated;
 
             if (lastUpdated.isAfter(LAST_UPDATE_DATETIME)) {
-                dashboardController.pushEntries(lastMessage);
+                LAST_UPDATE_DATETIME = lastUpdated;
+                dashboardController.pushFreshEntries();
+            } else {
+                dashboardController.pushCachedEntries();
             }
         }
 

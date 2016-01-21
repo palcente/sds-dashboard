@@ -1,0 +1,32 @@
+<body onload="sendDate()">
+
+<div id="dateDiv" class="container">
+
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>jobExecutionId</th>
+            <th>jobName</th>
+            <th>jobInstanceId</th>
+            <th>createTime</th>
+            <th>startTime</th>
+            <th>endTime</th>
+            <th>status</th>
+            <th>exitCode</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr data-ng-repeat="job in resp | orderBy: '-jobExecutionId' " ng-class="getRowColour(job.status)">
+            <td>{{ job.jobExecutionId }}</td>
+            <td>{{ job.jobName }}</td>
+            <td>{{ job.jobInstanceId }}</td>
+            <td>{{ job.createTime | dateFilter | date:'yyyy-MM-dd hh:mm' }}</td>
+            <td>{{ job.startTime | dateFilter | date:'yyyy-MM-dd hh:mm' }}</td>
+            <td>{{ job.endTime | dateFilter | date:'yyyy-MM-dd hh:mm' }}</td>
+            <td>{{ job.status }}</td>
+            <td>{{ job.exitCode }}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>

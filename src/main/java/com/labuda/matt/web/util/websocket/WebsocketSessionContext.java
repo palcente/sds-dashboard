@@ -1,5 +1,7 @@
 package com.labuda.matt.web.util.websocket;
 
+import com.labuda.matt.web.controller.websocket.DashboardController;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.HashSet;
@@ -14,9 +16,13 @@ import java.util.Set;
 @Component
 public class WebsocketSessionContext {
 
+    @Autowired
+    private DashboardController dashboardController;
+
     private Set<String> activeSessions = new HashSet<String>();
 
     public boolean registerSession(String sessionId){
+        dashboardController.pushFreshEntries();
         return activeSessions.add(sessionId);
     }
 

@@ -23,12 +23,18 @@
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
         <module name="sds-dashboard" />
+      </profile>
+      <profile default="false" name="Annotation profile for spring-batch-dashboard" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
         <module name="spring-batch-dashboard" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="sds-dashboard" target="1.8" />
-      <module name="spring-batch-dashboard" target="1.8" />
+      <module name="spring-batch-dashboard" target="1.6" />
     </bytecodeTargetLevel>
   </component>
 </project>

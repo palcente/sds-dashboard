@@ -3,12 +3,16 @@ package com.labuda.matt.web.controller.websocket;
 import com.labuda.matt.web.dao.DashboardDao;
 import com.labuda.matt.web.model.DashboardEntry;
 import com.labuda.matt.web.model.WebsocketMessage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
@@ -20,25 +24,31 @@ import java.util.List;
 @Controller
 public class DashboardController {
 
-    DateTimeFormatter dTF = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-    WebsocketMessage lastMessage;
+    private static Logger logger = LoggerFactory.getLogger(DashboardController.class);
 
-    @SuppressWarnings("SpringJavaAutowiringInspection")
+    @Autowired
+    private SimpMessagingTemplate template;
+
     @Autowired
     private DashboardDao dao;
 
+    private List<DashboardEntry> cache;
+
     @MessageMapping("/dashboard")
     @SendTo("/topic/dashboardEntries")
-    public List<DashboardEntry> pushEntries(WebsocketMessage m) throws Exception {
-        setLastMessage(m);
-        return dao.findByFromDateBetween(LocalDate.parse(m.getDate(),dTF).atStartOfDay(), LocalDate.parse(m.getDate(),dTF).plusDays(1).atStartOfDay());
+    public List<DashboardEntry> pushFreshEntries() {
+        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime yesterday = now.minusHours(24);
+        this.cache = dao.findByFromDateBetween(yesterday,now);
+        this.template.convertAndSend("/topic/dashboardEntries", cache);
+        logger.info("Pushing fresh list of dashboard entries");
+        return cache;
     }
 
-    public WebsocketMessage getLastMessage() {
-        return lastMessage;
-    }
-
-    public void setLastMessage(WebsocketMessage lastMessage) {
-        this.lastMessage = lastMessage;
+    @SendTo("/topic/dashboardEntries")
+    public List<DashboardEntry> pushCachedEntries() {
+        logger.info("Caching fresh list of dashboard entries");
+        this.template.convertAndSend("/topic/dashboardEntries", cache);
+        return cache;
     }
 }

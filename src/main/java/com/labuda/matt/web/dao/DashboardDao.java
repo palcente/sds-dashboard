@@ -11,7 +11,6 @@ import java.util.List;
  */
 public interface DashboardDao extends JpaRepository<DashboardEntry,Long> {
 
-
     @SuppressWarnings("JpaQlInspection")
     @Query("select u from DashboardEntry u where u.startTime between ?1 and ?2")
     List<DashboardEntry> findByFromDateBetween(LocalDateTime date1, LocalDateTime date2);

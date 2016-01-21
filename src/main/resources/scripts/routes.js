@@ -2,22 +2,18 @@
  * Created by matt on 29/11/2015.
  */
 
-var mainModule  = angular.module('mainModule', ['ngRoute']);
-
-mainModule.config(function ($routeProvider) {
-    $routeProvider
-        .when('/',{
-            controller: 'SimpleController',
-            templateUrl: 'Dashboard.html'
+mainModule.config(function($routeProvider){
+    $routeProvider.when('/',
+        {
+            controller: 'WebsocketController',
+            templateUrl: 'partials/Dashboard.html'
         })
-        .when('/View2',
+        .when(
+            '/browse',
             {
-                controller: 'SimpleController',
-                templateUrl: 'View2.html'
-            })
-        .otherwise({ redirectTo: '/'});
+                controller:'BrowseController',
+                template : 'partials/Browse.html'
+            }
+        )
+        .otherwise({redirectTo: '/'})
 });
-
-/*mainModule.controller('SimpleController', function($scope) {
-    $scope.name = 'Mateusz';
-});*/
