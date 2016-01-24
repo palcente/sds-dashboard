@@ -18,8 +18,7 @@ import java.util.List;
 
 /**
  * Created by matt on 29/11/2015.
- * TODO:Refine query returning dashboard entries, perhaps we could fetch entries 12/24/36/48 hours back.
- * TODO:Quick workaround to save the state here, which probably is not good... until above is fixed at least.
+ * TODO:Query pulls jobs 24 back, could we have a dynamically set property to change that ?.
  */
 @Controller
 public class DashboardController {

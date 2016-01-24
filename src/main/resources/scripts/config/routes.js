@@ -5,7 +5,7 @@
 mainModule.config(function($routeProvider){
     $routeProvider.when('/',
         {
-            controller: 'WebsocketController',
+            controller: 'dashboardController',
             templateUrl: 'partials/Dashboard.html'
         })
         .when(

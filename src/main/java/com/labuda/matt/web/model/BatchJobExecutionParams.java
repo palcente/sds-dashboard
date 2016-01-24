@@ -1,5 +1,7 @@
 package com.labuda.matt.web.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -12,6 +14,7 @@ public class BatchJobExecutionParams implements Serializable {
     private String typeCd;
     private String keyName;
     private String StringVal;
+    @JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss")
     private Date dateVal;
     private long longVal;
     private double doubleVal;

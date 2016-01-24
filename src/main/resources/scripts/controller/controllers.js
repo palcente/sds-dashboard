@@ -2,18 +2,36 @@
  * Created by matt on 29/11/2015.
  */
 var mainModule  = angular.module('mainModule', ['ngRoute']);
-var controllers = {};
 var stompClient = null;
 
-controllers.WebsocketController = mainModule.controller('WebsocketController', function($scope) {
-    var socket = new SockJS('/dashboard');
-    stompClient = Stomp.over(socket);
-    stompClient.connect({},function(frame) {
-        console.log('Connected: ' + frame)
-        stompClient.subscribe('/topic/dashboardEntries', callback);
-    });
+mainModule.controller('dashboardController',function($scope,stepService) {
+    $scope.orderByField = 'jobExecutionId';
+    $scope.reverseSort = true;
+    $scope.filterField = 'jobName';
+    $scope.gettingSteps = function(id){
+        stepService.gettingSteps(id).then(function(response) {
+            $scope.step = response.data;
+        }, function(error) {
+            alert(error.message);
+        });
+    }
 
-    var callback  = function(message){
+
+
+    var socket = new SockJS('/dashboard');
+        stompClient = Stomp.over(socket);
+        stompClient.connect({}, function (frame) {
+            stompClient.subscribe('/topic/dashboardEntries', callback);
+            console.log('Subscribed: ' + frame)
+        });
+
+    $scope.$on("$destroy", function() {
+            stompClient.disconnect(function(){
+                console.log('Unsubscribed!')
+            });
+        });
+
+     var callback  = function(message){
         console.log('Called Websocket onReceive callback')
         $scope.resp = JSON.parse(message.body);
         $scope.$digest();
@@ -38,7 +56,7 @@ mainModule.filter("dateFilter", function() {
         return date;
     };
 });
-
+/*
 function sendDate() {
     stompClient.send("/app/dashboard", {}, JSON.stringify({'date': 'HELLO'}));
-}
+}*/

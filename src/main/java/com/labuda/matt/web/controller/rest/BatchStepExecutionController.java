@@ -20,7 +20,6 @@ public class BatchStepExecutionController {
 
     private static Logger logger = LoggerFactory.getLogger(BatchStepExecutionController.class);
 
-    @SuppressWarnings("SpringJavaAutowiringInspection")
     @Autowired
     private BatchStepExecutionDao dao;
 

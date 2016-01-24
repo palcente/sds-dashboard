@@ -1,28 +1,71 @@
-<body onload="sendDate()">
+<!--TODO: fix ordering by dates here - non critical-->
+<body onload="gettingSteps()">
 
-<div id="dateDiv" class="container">
-
-    <table class="table table-hover">
+<div id="tableDiv" class="container">
+    <div>{{step}}</div>
+    <input ng-model="dashboardFilter" type="text" class="form-control" placeholder="Filter">
+    <table class="table table-hover table table-bordered text-nowrap">
         <thead>
         <tr>
-            <th>jobExecutionId</th>
-            <th>jobName</th>
-            <th>jobInstanceId</th>
-            <th>createTime</th>
-            <th>startTime</th>
-            <th>endTime</th>
-            <th>status</th>
-            <th>exitCode</th>
+            <th><a href="" ng-click="orderByField='jobExecutionId'; reverseSort = !reverseSort">
+                JOB_EXECUTION_ID
+                <span ng-show="orderByField == 'jobExecutionId'">
+                    <span ng-show="reverseSort" class="glyphicon glyphicon-arrow-down" aria-hidden="true"/>
+                    <span ng-show="!reverseSort" class="glyphicon glyphicon-arrow-up" aria-hidden="true"/>
+                </span></a></th>
+            <th><a href="" ng-click="orderByField='jobName'; reverseSort = !reverseSort">
+                JOB_NAME
+                <span ng-show="orderByField == 'jobName'">
+                    <span ng-show="reverseSort" class="glyphicon glyphicon-arrow-down" aria-hidden="true"/>
+                    <span ng-show="!reverseSort" class="glyphicon glyphicon-arrow-up" aria-hidden="true"/>
+                </span></a>
+            <th><a href="" ng-click="orderByField='jobInstanceId'; reverseSort = !reverseSort">
+            JOB_INSTANCE_ID
+                <span ng-show="orderByField == 'jobInstanceId'">
+                    <span ng-show="reverseSort" class="glyphicon glyphicon-arrow-down" aria-hidden="true"/>
+                    <span ng-show="!reverseSort" class="glyphicon glyphicon-arrow-up" aria-hidden="true"/>
+                </span></a>
+            <th><a href="" ng-click="orderByField='createTime'; reverseSort = !reverseSort">
+            CREATE_TIME
+                <span ng-show="orderByField == 'createTime'">
+                    <span ng-show="reverseSort" class="glyphicon glyphicon-arrow-down" aria-hidden="true"/>
+                    <span ng-show="!reverseSort" class="glyphicon glyphicon-arrow-up" aria-hidden="true"/>
+                </span></a>
+            <th><a href="" ng-click="orderByField='startTime'; reverseSort = !reverseSort">
+            START_TIME
+                <span ng-show="orderByField == 'startTime'">
+                    <span ng-show="reverseSort" class="glyphicon glyphicon-arrow-down" aria-hidden="true"/>
+                    <span ng-show="!reverseSort" class="glyphicon glyphicon-arrow-up" aria-hidden="true"/>
+                </span></a>
+            <th><a href="" ng-click="orderByField='endTime'; reverseSort = !reverseSort">
+            END_TIME
+                <span ng-show="orderByField == 'endTime'">
+                    <span ng-show="reverseSort" class="glyphicon glyphicon-arrow-down" aria-hidden="true"/>
+                    <span ng-show="!reverseSort" class="glyphicon glyphicon-arrow-up" aria-hidden="true"/>
+                </span></a>
+            <th><a href="" ng-click="orderByField='status'; reverseSort = !reverseSort">
+            STATUS
+                <span ng-show="orderByField == 'status'">
+                    <span ng-show="reverseSort" class="glyphicon glyphicon-arrow-down" aria-hidden="true"/>
+                    <span ng-show="!reverseSort" class="glyphicon glyphicon-arrow-up" aria-hidden="true"/>
+                </span></a>
+            <th><a href="" ng-click="orderByField='exitCode'; reverseSort = !reverseSort">
+            EXIT_CODE
+                <span ng-show="orderByField == 'exitCode'">
+                    <span ng-show="reverseSort" class="glyphicon glyphicon-arrow-down" aria-hidden="true"/>
+                    <span ng-show="!reverseSort" class="glyphicon glyphicon-arrow-up" aria-hidden="true"/>
+                </span></a>
         </tr>
         </thead>
         <tbody>
-        <tr data-ng-repeat="job in resp | orderBy: '-jobExecutionId' " ng-class="getRowColour(job.status)">
+        <tr data-ng-repeat="job in resp | orderBy:orderByField:reverseSort | filter:dashboardFilter"
+            ng-class="getRowColour(job.status)" ng-click="gettingSteps(job.jobExecutionId)">
             <td>{{ job.jobExecutionId }}</td>
             <td>{{ job.jobName }}</td>
             <td>{{ job.jobInstanceId }}</td>
-            <td>{{ job.createTime | dateFilter | date:'yyyy-MM-dd hh:mm' }}</td>
-            <td>{{ job.startTime | dateFilter | date:'yyyy-MM-dd hh:mm' }}</td>
-            <td>{{ job.endTime | dateFilter | date:'yyyy-MM-dd hh:mm' }}</td>
+            <td>{{ job.createTime | date :'yyyy-MM-dd hh:mm:ss' }}</td>
+            <td>{{ job.startTime |  date:'yyyy-MM-dd hh:mm:ss' }}</td>
+            <td>{{ job.endTime |  date:'yyyy-MM-dd hh:mm:ss' }}</td>
             <td>{{ job.status }}</td>
             <td>{{ job.exitCode }}</td>
         </tr>

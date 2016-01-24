@@ -1,5 +1,7 @@
 package com.labuda.matt.web.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -21,8 +23,11 @@ public class DashboardEntry implements Serializable {
     private String jobName;
     @Id
     private long jobInstanceId;
+    @JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss")
     private LocalDateTime createTime;
+    @JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss")
     private LocalDateTime startTime;
+    @JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss")
     private LocalDateTime endTime;
     private String status;
     private String exitCode;

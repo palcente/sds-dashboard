@@ -1,5 +1,7 @@
 package com.labuda.matt.web.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -18,7 +20,9 @@ public class BatchStepExecution implements Serializable {
     private String version;
     private String stepName;
     private long jobExecutionId;
+    @JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss")
     private LocalDateTime startTime;
+    @JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss")
     private LocalDateTime endTime;
     private String status;
     private long commitCount;
@@ -31,6 +35,7 @@ public class BatchStepExecution implements Serializable {
     private long rollbackCount;
     private String exitCode;
     private String exitMessage;
+    @JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss")
     private LocalDateTime lastUpdated;
 
     public BatchStepExecution() {

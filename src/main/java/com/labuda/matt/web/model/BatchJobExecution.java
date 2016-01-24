@@ -1,5 +1,7 @@
 package com.labuda.matt.web.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -17,12 +19,16 @@ public class BatchJobExecution implements Serializable {
     private long jobExecutionId;
     private long version;
     private long jobInstanceId;
+    @JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss")
     private LocalDateTime createTime;
+    @JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss")
     private LocalDateTime startTime;
+    @JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss")
     private LocalDateTime endTime;
     private String status;
     private String exitCode;
     private String exitMessage;
+    @JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss")
     private LocalDateTime lastUpdated;
 
     public BatchJobExecution() {
