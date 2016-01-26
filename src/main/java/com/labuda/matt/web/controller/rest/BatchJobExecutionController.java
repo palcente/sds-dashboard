@@ -24,10 +24,10 @@ public class BatchJobExecutionController {
     private BatchJobExecutionDao dao;
 
     @Cacheable(cacheNames = "batchJobExecution",
-            unless = "#result.status=='STARTED'  || " +
-                    "#result.status=='STARTING' || " +
-                    "#result.status=='STOPPING' || " +
-                    "#result.status=='UNKNOWN'")
+            unless = "#result.exitCode=='STARTED'  || " +
+                    "#result.exitCode=='STARTING' || " +
+                    "#result.exitCode=='STOPPING' || " +
+                    "#result.exitCode=='UNKNOWN'")
     @RequestMapping(path = "/batchJobExecution/{jobExecutionId}", method = RequestMethod.GET)
     public BatchJobExecution getJobExecution(@PathVariable long jobExecutionId) {
         logger.debug("Received request for jobExcutionId: {}", jobExecutionId);

@@ -39,7 +39,7 @@ mainModule.controller('dashboardController',function($scope,stepService) {
 
     $scope.getRowColour = function (status) {
         if (status == ("COMPLETED"))
-            return null;
+            return "success";
         else if (status == ("FAILED"))
             return "danger";
         else if (status == ("UNKNOWN"))
